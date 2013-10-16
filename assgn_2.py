@@ -43,24 +43,30 @@ upper = mean + std
 lower = mean - std
 
 plot_year = np.array([d.year for d in dates])
-idx       = np.where (plot_year >= 2007)
+idx       = np.where ((plot_year >= 2005)&(plot_year <= 2007))
 plot_dates    = dates[idx]
 plot_discharge = discharge [idx]
 plot_mean      = mean[idx]
 plot_upper     = plot_mean+ std[idx]
 plot_lower   = plot_mean -  std[idx]
 
-fig = plt.figure()
+
+fig = plt.figure(figsize=(16,8))
+ax = fig.add_axes([0.05,0.1,0.9,0.85])
+
+
 plt.plot(plot_dates, plot_mean, 'r', lw= 1.5, label = "Annual Mean Discharge")
 plt.plot(plot_dates, plot_upper,'k:', label = '+ Std')
 plt.plot(plot_dates, plot_lower,'k:', label = '- Std')    
-plt.plot(plot_dates, plot_discharge, 'b', lw = 1.0,label = "Daily Discharge ")
+plt.plot(plot_dates, plot_discharge, 'g', lw = 1.0,label = "Daily Discharge ")
     
  
 plt.fill_between(plot_dates,plot_upper,plot_lower, facecolor='pink',alpha=0.3)
 
 
-plt.legend(loc = 'upper right')
+plt.legend(bbox_to_anchor=(0, 0, 0.3, 1))
 plt.title('Daily Stream Discharge for San Jacinto Rv nr Cleveland, TX')
 plt.ylabel('Discharge (m$^{3}$/sec)')
 plt.savefig('plot_graph_discharge.pdf')
+
+
