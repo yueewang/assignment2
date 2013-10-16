@@ -37,6 +37,6 @@ plot_mean      = mean[idx]
 plot_upper     = plot_mean+ std[idx]
 plot_lower   = plot_mean+ std[idx]
 
-plot_function(plot_year,plot_dates,plot_discharge,plot_mean,plot_upper,plot_lower)
+#plot.plot_function(plot_year,plot_dates,plot_discharge,plot_mean,plot_upper,plot_lower)
 
  
