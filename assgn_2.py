@@ -22,9 +22,11 @@ for line in data.readlines()[27:]:
 #    date    = datetime.strptime(date_split, "%Y-%m-%d")
     discharge.append(float(data_split[3]))
     dates.append(datetime(year,month, day))
-    
-discharge = np.array(discharge) 
+   
+discharge = np.array(discharge)
 dates = np.array(dates)
+
+discharge = discharge * 0.0283
 
 month = np.array([d.month for d in dates])
 day   = np.array([d.day for d in dates])
@@ -35,20 +37,30 @@ for idx in dates:
     std.append (np.std (cal_discharge))
 
 mean = np.array(mean)
-std  = np.array(mean)
+std  = np.array(std)
 
 upper = mean + std
 lower = mean - std
 
+plot_year = np.array([d.year for d in dates])
+idx       = np.where (plot_year >= 2007)
+plot_dates    = dates[idx]
+plot_discharge = discharge [idx]
+plot_mean      = mean[idx]
+plot_upper     = plot_mean+ std[idx]
+plot_lower   = plot_mean -  std[idx]
+
 fig = plt.figure()
-plt.plot(dates, discharge, 'b', lw = 1.0,label = "Daily Time Series ")
-plt.plot(dates, mean, 'k', lw= 2.0, label = "Annual Mean")
-plt.plot(dates, upper,'k:', label = 'Std Upper Bound')
-plt.plot(dates, lower,'k:', label = 'Std Lower Bound')
-plt.fill_between(dates,upper,lower, facecolor='black',alpha=0.3)
+plt.plot(plot_dates, plot_mean, 'r', lw= 1.5, label = "Annual Mean Discharge")
+plt.plot(plot_dates, plot_upper,'k:', label = '+ Std')
+plt.plot(plot_dates, plot_lower,'k:', label = '- Std')    
+plt.plot(plot_dates, plot_discharge, 'b', lw = 1.0,label = "Daily Discharge ")
+    
+ 
+plt.fill_between(plot_dates,plot_upper,plot_lower, facecolor='pink',alpha=0.3)
+
+
 plt.legend(loc = 'upper right')
-plt.title('River Discharge for San Jacinto Rv nr Cleveland, TX')
-plt.xlabel('Date')
+plt.title('Daily Stream Discharge for San Jacinto Rv nr Cleveland, TX')
 plt.ylabel('Discharge (m$^{3}$/sec)')
-plt.show()
-plt.savefig('river_discharge.pdf')
+plt.savefig('plot_graph_discharge.pdf')
