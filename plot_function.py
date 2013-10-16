@@ -14,4 +14,4 @@ def plot_function(dates,plot_discharge,plot_mean,plot_upper,plot_lower):
     plt.legend(loc = 'upper right')
     plt.title('Daily Stream Discharge for San Jacinto Rv nr Cleveland, TX')
     plt.ylabel('Discharge (m$^{3}$/sec)')
-    #plt.savefig('river_discharge.pdf')
+    plt.savefig('river_discharge.pdf')
