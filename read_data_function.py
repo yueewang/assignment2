@@ -2,12 +2,14 @@ import numpy as np
 import urllib
 from datetime import datetime 
 
-start_date = '1999-10-23'
-end_date   = '2009-10-23'
-site_no    = '08070000'
-    
+
 
 def read_data_function(start_date,end_date,site_no):
+    
+    #start_date = '1999-10-23'
+    #end_date   = '2009-10-23'
+    #site_no    = '08070000'
+    
     
     url = 'http://waterdata.usgs.gov/nwis/dv?referred_module=sw&cb_00060=on&\
     format=rdb&begin_date='+start_date+'&end_date='+end_date+'&site_no='+site_no+''
@@ -20,7 +22,7 @@ def read_data_function(start_date,end_date,site_no):
 
     for line in data.readlines()[27:]: 
         data_split    = line.split()
-        dates    = data_split[2]
+        dates         = data_split[2]
         year    = int(dates.split('-')[0])
         month   = int(dates.split('-')[1])
         day     = int(dates.split('-')[2])
@@ -31,6 +33,6 @@ def read_data_function(start_date,end_date,site_no):
     discharge = np.array(discharge)
     dates = np.array(dates)
 
-#    discharge = discharge * 0.0283
+    discharge = discharge * 0.0283
     
     
