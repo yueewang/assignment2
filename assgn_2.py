@@ -32,9 +32,9 @@ month = np.array([d.month for d in dates])
 day   = np.array([d.day for d in dates])
     
 for idx in dates:
-    cal_discharge = discharge [(month ==idx.month) & (day ==idx.day)]
-    mean.append (np.mean (cal_discharge))
-    std.append (np.std (cal_discharge))
+    idx_discharge = discharge [(month ==idx.month) & (day ==idx.day)]
+    mean.append (np.mean (idx_discharge))
+    std.append (np.std (idx_discharge))
 
 mean = np.array(mean)
 std  = np.array(std)
