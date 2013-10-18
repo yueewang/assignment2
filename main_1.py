@@ -1,9 +1,9 @@
 import numpy as np
 import read_function_1 as read_data
-import plot_function_2 as plot
+import plot_function_1 as plot
 
-start_date  ='1999-10-23'
-end_date    ='2010-10-23'
+start_date  = '1999-10-23'
+end_date    = '2010-10-23'
 site_no     = '08070000'
 
 data_1     = read_data.read_function_1(start_date,end_date,site_no)
@@ -38,4 +38,4 @@ plot_mean      = mean[idx]
 plot_upper     = plot_mean+ std[idx]
 plot_lower   = plot_mean  - std[idx]
 
-plot.plot_function_1(plot_dates,plot_discharge,plot_mean,plot_upper,plot_lower)
+plot.plot_function_1(plot_dates,plot_discharge,plot_mean,plot_upper,plot_lower,site_no)
