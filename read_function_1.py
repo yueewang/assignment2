@@ -6,9 +6,6 @@ from datetime import datetime
 def read_function_1(start_date,end_date,site_no):
     
     url = []
-    #start_date = str(datetime(start_y,start_m,start_d).date())
-    #end_date   = str(datetime(end_y,end_m,end_d).date())
-    
     
     url = 'http://waterdata.usgs.gov/nwis/dv?referred_module=sw&cb_00060=on&format=rdb&begin_date='+start_date+'&end_date='+end_date+'&site_no='+site_no
     
